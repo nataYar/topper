@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #0fa1bb;
+    font-size: 1rem;
+}
+
+button {
+    display: inline-block;
+    padding: .75rem 1.25rem;
+    text-transform: uppercase;
+    font-size: 1rem;
+    transition: all .3s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1; 
+    border-radius: 37% 30% 45% 35%;
+    border: none;
+    outline: none;
+    font-weight: 400;
+}
+
+button:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background-color: #82c548;
+    border-radius: 37% 30% 45% 35%;
+    border: none;
+    outline: none;
+}
+
+button:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #d0f898;
+    transition: all .3s;
+    border-radius: 37% 30% 45% 35%;
+    z-index: -1;
+    border: none;
+    outline: none;
+}
+
+
+button:hover:before{
+    width: 100%;
+    
+}
+button:hover{
+    color: #72ac3f;
+}
+
+.score {
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+    margin-bottom: 10px;
+}
+#win {
+    width: 150px;
+    padding: 10px;
+}
+
+#lost {
+    width: 150px;
+    padding: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+}
+
+.container {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+.leaf {
+    background-color: #d0f898;
+    border-radius: 35% 40% 46% 47%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gameLeaf{
+    width: 0;
+    height: 0;
+}
+.presentLeaf{
+    animation: shrink 5s linear;
+}
+
+@keyframes shrink {
+    0%   {width: 100px; height: 100px;}
+    20%  {width: 80px; height: 80px;}
+    40%  {width: 60px; height: 60px;}
+    60% {width: 40px; height: 40px;}
+    80% {width: 20px; height: 20px;}
+    100% {width: 0px; height: 0px;}
+  }
+.frog {
+    background-repeat: no-repeat; 
+    position: absolute;
+    z-index: 100;
+}
+
+.jump {
+    animation: frogJumps .5s infinite;
+}
+@keyframes frogJumps {
+    from {transform: translateY(0px)}
+    to {transform: translateY(10px)}
+}
+.flag {
+    background-repeat: no-repeat; 
+    height: 40px;
+    position: absolute; 
+    z-index: 100;
+   bottom: 85px
+}
+.splash{
+    border: 0px solid #0000;
+    width: 100px;
+    height: 100px;
+    background-size: 100px 100px;
+    outline: none;
+}
+
+
+
