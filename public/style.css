@@ -6,6 +6,7 @@
     color: #fff;
     font-family: 'Poppins', sans-serif;
     font-weight: 200;
+
 }
 
 body {
@@ -18,7 +19,12 @@ body {
     background-color: #0fa1bb;
     font-size: 1rem;
 }
+.settings {
+    display: flex;
+    flex-direction: row;
+}
 
+/* START GAME BUTTON */
 button {
     display: inline-block;
     padding: .75rem 1.25rem;
@@ -63,11 +69,10 @@ button:before {
     outline: none;
 }
 
-
 button:hover:before{
     width: 100%;
-    
 }
+
 button:hover{
     color: #72ac3f;
 }
@@ -111,12 +116,14 @@ button:hover{
     align-items: center;
     justify-content: center;
 }
-.gameLeaf{
+.game-leaf{
     width: 0;
     height: 0;
 }
-.presentLeaf{
-    animation: shrink 5s linear;
+.present-leaf{
+    animation-name: shrink;
+    animation-duration: 5s;
+    animation-timing-function: linear;
 }
 
 @keyframes shrink {

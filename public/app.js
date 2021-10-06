@@ -1,11 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const allLeaves = document.querySelectorAll('.leaf');
-    const gameLeaves = document.querySelectorAll('.gameLeaf');
-    const presentLeaves = document.querySelectorAll('div.leaf.gameLeaf.presentLeaf');
+    const gameLeaves = document.querySelectorAll('.game-leaf');
+    const presentLeaves = document.querySelectorAll('div.leaf.game-leaf.present-leaf');
     
     const containers = document.querySelectorAll('.container');
-    const startBtn = document.querySelector('#button')
+    const startBtn = document.querySelector('#btn-start')
     const frog = document.querySelector('.frog')
+
+    const modeEasy = document.querySelector('.mode-easy');
+    const modeHard = document.querySelector('.mode-hard');
 
     let frogIndex = 0;
     let winScore = 0;
@@ -15,10 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let gameLeavesArrayFiltered;
     let filteredArrCopy;
     let arrayFin = [];
-
     let gameIsOn = null;
     let maxNumOfLeaves = 5;
-
     const noLeftTurn = [0, 5, 10, 15, 20];
     const noRightTurn = [4, 9, 14, 19, 24];
     const rowLength = 5
@@ -50,30 +51,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function pickrandomLeaves(){
         //we don't want leaves that already popped up and shrinking
-        gameLeavesArray.filter(el => !el.classList.contains('presentLeaf'));
+        gameLeavesArray.filter(el => !el.classList.contains('present-leaf'));
         filteredArrCopy = gameLeavesArray.slice(0);
         for (let i=0; i<maxNumOfLeaves; i++){
                 if (filteredArrCopy.length < 1) { filteredArrCopy = myArray2.slice(0); }
                 let index = Math.floor(Math.random() * filteredArrCopy.length);
                 let item = filteredArrCopy[index];
                 filteredArrCopy.splice(index, 1);
-                item.classList.add("presentLeaf"); 
+                item.classList.add('present-leaf'); 
                 arrayFin.push(item)
         }
-        console.log('presentLeaves / presentLeaves  '+ presentLeaves.length)
         
         //find the shrunk leaves(0px width), remove PresetnLeaves class, remove them from the array
         // where new leaves are added(added PresentLeaves class(100px)) 
         //5001 cause css animation is set on 5s
         setTimeout(() => {
             const removeZeroSized = arrayFin.filter(leaf => leaf.offsetWidth == 0 && leaf.offsetHeight == 0);
-            removeZeroSized.forEach(leaf => leaf.classList.remove('presentLeaf'));
+            removeZeroSized.forEach(leaf => leaf.classList.remove('present-leaf'));
             arrayFin = arrayFin.filter(el => !removeZeroSized.includes(el));
-
-            console.log('filteredArrCopy '+ filteredArrCopy.length)
-            console.log('arrayFin / removeZeroSized  '+ arrayFin.length)
-           
-        }, 5001);
+        }, 5010);
 
         allLeaves[frogIndex].offsetWidth == 0 && allLeaves[frogIndex].offsetHeight == 0 ? 
         splash(frogIndex) : null;
@@ -109,10 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 break;
         }
-        allLeaves[frogIndex].classList.contains('presentLeaf') ||
+        allLeaves[frogIndex].classList.contains('present-leaf') ||
         allLeaves[frogIndex].classList.contains('start') ||
         allLeaves[frogIndex].classList.contains('finish')  ?
         containers[frogIndex].appendChild(frog) : splash(frogIndex);
+        
 
         if(frogIndex == 24){
             winScore+=1;
@@ -131,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
             containers[frogIndex].removeChild(frog);
         }
         const splashImg = document.createElement("img");
-        splashImg.classList.add("splash");
+        splashImg.classList.add('splash');
         splashImg.src = "images/splash-128.png";
         containers[ind].appendChild(splashImg);
         loseScore+=1;
